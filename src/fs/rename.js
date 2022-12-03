@@ -8,17 +8,11 @@ const rename = async () => {
   const getURL = (path) => new URL(path, import.meta.url);
 
   try {
-    await fs.access(getURL(OLD_PATH));
-    await fs.access(getURL(NEW_PATH));
+    await fs.copyFile(getURL(OLD_PATH), getURL(NEW_PATH), fs.constants.COPYFILE_EXCL);
+    await fs.rm(getURL(OLD_PATH));
   } catch (e) {
-    try {
-      await fs.rename(getURL(OLD_PATH), getURL(NEW_PATH));
-      return;
-    } catch (e) {
-      throw FS_ERROR;
-    }
+    throw FS_ERROR;
   }
-  throw FS_ERROR;
 };
 
 await rename();
