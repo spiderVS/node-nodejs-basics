@@ -7,11 +7,14 @@ const parseArgs = () => {
     throw new Error('You must provide at least one argument');
   }
 
+  const argsListArray = [];
+
   for (let i = 0; i < args.length; i+=2) {
     const arg = args[i];
     const value = args[i+1];
-    console.log(`${arg.slice(2)} is ${value}`);
+    argsListArray.push(`${arg.slice(2)} is ${value}`);
   }
+  console.log(argsListArray.join(', '));
 }
 
 parseArgs();
