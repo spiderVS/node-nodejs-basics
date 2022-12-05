@@ -9,4 +9,5 @@ const spawnChildProcess = async (args) => {
   child.on('close', (code) => process.stdout.write(`\nChild process exited.\nChild process send exit code: ${code}`));
 }
 
+// Put your arguments in function call to test this functionality
 spawnChildProcess(['Vasya', 123, true, 'one million']);
